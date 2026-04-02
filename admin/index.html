@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Chat App</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="logo">
+                <h2>🔐 Admin</h2>
+            </div>
+            <nav>
+                <a href="#" class="active" onclick="showSection('dashboard')">Dashboard</a>
+                <a href="#" onclick="showSection('users')">Users</a>
+                <a href="#" onclick="showSection('messages')">Messages</a>
+            </nav>
+            <button onclick="adminLogout()" class="btn btn-danger">Logout</button>
+        </aside>
+        
+        <main class="admin-main">
+            <header>
+                <h1>Admin Dashboard</h1>
+            </header>
+            
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="admin-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Users</h3>
+                        <p id="statTotalUsers">-</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Verified Users</h3>
+                        <p id="statVerifiedUsers">-</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Online Users</h3>
+                        <p id="statOnlineUsers">-</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Messages</h3>
+                        <p id="statTotalMessages">-</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Users Section -->
+            <section id="users-section" class="admin-section" style="display: none;">
+                <h2>All Users</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Verified</th>
+                            <th>Status</th>
+                            <th>Joined</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody"></tbody>
+                </table>
+            </section>
+            
+            <!-- Messages Section -->
+            <section id="messages-section" class="admin-section" style="display: none;">
+                <h2>Recent Messages</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Content</th>
+                            <th>Time</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="messagesTableBody"></tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    
+    <script src="js/admin.js"></script>
+</body>
+</html>

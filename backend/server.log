@@ -1,0 +1,27 @@
+nohup: ignoring input
+INFO:     Started server process [263836]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:33890 - "GET /users HTTP/1.1" 401 Unauthorized
+INFO:     ('127.0.0.1', 51576) - "WebSocket /ws/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJuam9yb2dlZ3JhY2U0NzFAZ21haWwuY29tIiwiZXhwIjoxNzc0NTM3MjM2fQ.PtUzoC74RfO097gaopdMaq6Nmn4PqTFw_fZfUn89eeE" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:48522 - "GET /conversations HTTP/1.1" 200 OK
+INFO:     ('127.0.0.1', 48536) - "WebSocket /ws/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJuam9yb2dlZ3JhY2U0NzFAZ21haWwuY29tIiwiZXhwIjoxNzc0NTM3MjM2fQ.PtUzoC74RfO097gaopdMaq6Nmn4PqTFw_fZfUn89eeE" [accepted]
+INFO:     connection open
+/home/grace/Desktop/chat/backend/main.py:179: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  current_user.last_seen = datetime.utcnow()
+INFO:     127.0.0.1:48522 - "POST /logout HTTP/1.1" 200 OK
+/home/grace/Desktop/chat/backend/main.py:364: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  user.last_seen = datetime.utcnow()
+INFO:     connection closed
+INFO:     127.0.0.1:48522 - "POST /token HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:52178 - "POST /token HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:55582 - "OPTIONS /register HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55582 - "POST /register HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:55590 - "POST /token HTTP/1.1" 400 Bad Request
+INFO:     Shutting down
+INFO:     connection closed
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [263836]

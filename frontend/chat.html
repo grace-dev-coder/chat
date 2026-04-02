@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - Chat App</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="chat-app">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>💬 Grace Chat</h3>
+                <div class="user-info">
+                    <span id="currentUserName"></span>
+                    <button onclick="logout()" class="btn btn-small">Logout</button>
+                </div>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchUsers" placeholder="Search users..." oninput="searchUsers()">
+            </div>
+            <div class="conversations-list" id="conversationsList">
+                <!-- Conversations loaded dynamically -->
+            </div>
+        </aside>
+        
+        <main class="chat-main">
+            <div class="chat-header" id="chatHeader" style="display: none;">
+                <div class="chat-user-info">
+                    <h4 id="chatUserName"></h4>
+                    <span id="chatUserStatus" class="status"></span>
+                </div>
+            </div>
+            
+            <div class="messages-container" id="messagesContainer">
+                <div class="empty-state" id="emptyState">
+                    <p>Select a conversation to start chatting</p>
+                </div>
+            </div>
+            
+            <div class="typing-indicator" id="typingIndicator"></div>
+            
+            <div class="message-input-area" id="messageInputArea" style="display: none;">
+                <input type="text" id="messageInput" placeholder="Type a message..." 
+                       onkeypress="handleKeyPress(event)" oninput="handleTyping()">
+                <button onclick="sendMessage()" class="btn btn-primary">Send</button>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/api.js"></script>
+    <script src="js/chat.js"></script>
+</body>
+</html>
