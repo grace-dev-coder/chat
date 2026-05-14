@@ -5,7 +5,6 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "chat-backend"
 version = "1.0.0"
-description = "Chat System Backend"
 requires-python = ">=3.11,<3.14"
 dependencies = [
     "fastapi>=0.115.0",
