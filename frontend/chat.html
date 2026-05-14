@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - Real-Time Messaging</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Main Chat Interface -->
+    <div class="chat-app">
+        <!-- Sidebar: Online Users -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>Online Users</h3>
+                <span class="online-count" id="onlineCount">0 online</span>
+            </div>
+            <div class="users-list" id="usersList">
+                <!-- Users populated by JavaScript -->
+            </div>
+            <div class="sidebar-footer">
+                <span id="currentUser">User</span>
+                <button onclick="logout()" class="btn btn-small btn-danger">Logout</button>
+            </div>
+        </aside>
+
+        <!-- Chat Area -->
+        <main class="chat-main">
+            <!-- Chat Header -->
+            <header class="chat-header">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <div class="chat-header-info">
+                    <h3 id="chatTitle">Select a user to chat</h3>
+                    <span id="chatStatus" class="status"></span>
+                </div>
+                <div class="unread-badge" id="unreadBadge">0</div>
+            </header>
+
+            <!-- Messages Container -->
+            <div class="messages-container" id="messagesContainer">
+                <div class="empty-state" id="emptyState">
+                    <p>Select a user from the sidebar to start chatting</p>
+                </div>
+            </div>
+
+            <!-- Message Input -->
+            <div class="message-input-area" id="inputArea" style="display: none;">
+                <form id="messageForm" class="message-form">
+                    <input type="text" id="messageInput" placeholder="Type a message..." 
+                           autocomplete="off" required>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <script src="js/chat.js"></script>
+</body>
+</html>

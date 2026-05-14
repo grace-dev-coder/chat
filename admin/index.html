@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Chat System</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Admin Dashboard -->
+    <div class="admin-app">
+        <!-- Sidebar Navigation -->
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-header">
+                <div class="admin-logo">🔐 Admin</div>
+            </div>
+            
+            <nav class="admin-nav">
+                <a href="#" class="nav-item active" data-section="users">
+                    <span>👥</span> Users
+                </a>
+                <a href="#" class="nav-item" data-section="messages">
+                    <span>💬</span> Messages
+                </a>
+                <a href="#" class="nav-item" data-section="stats">
+                    <span>📊</span> Statistics
+                </a>
+            </nav>
+            
+            <div class="admin-sidebar-footer">
+                <span id="adminName">Admin</span>
+                <button onclick="adminLogout()" class="btn btn-small btn-danger">Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Header -->
+            <header class="admin-header">
+                <h1 id="pageTitle">User Management</h1>
+                <div class="admin-actions">
+                    <input type="text" id="searchInput" placeholder="Search..." class="search-input">
+                    <button onclick="refreshData()" class="btn btn-primary">Refresh</button>
+                </div>
+            </header>
+
+            <!-- Users Section -->
+            <section id="usersSection" class="admin-section active">
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Created</th>
+                                <th>Status</th>
+                                <th>Admin</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Messages Section -->
+            <section id="messagesSection" class="admin-section">
+                <div class="filters">
+                    <input type="number" id="filterUserId" placeholder="User ID" class="filter-input">
+                    <input type="text" id="filterSearch" placeholder="Search content..." class="filter-input">
+                    <button onclick="filterMessages()" class="btn btn-primary">Filter</button>
+                </div>
+                
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Content</th>
+                                <th>Time</th>
+                                <th>Read</th>
+                            </tr>
+                        </thead>
+                        <tbody id="messagesTableBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section id="statsSection" class="admin-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalUsers">0</div>
+                        <div class="stat-label">Total Users</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalMessages">0</div>
+                        <div class="stat-label">Total Messages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="activeUsers">0</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="onlineNow">0</div>
+                        <div class="stat-label">Online Now</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

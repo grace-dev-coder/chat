@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Chat System</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Admin Login Page -->
+    <div class="admin-auth-container">
+        <div class="admin-auth-card">
+            <div class="admin-logo">🔐 Admin Panel</div>
+            <h2>Administrator Login</h2>
+            
+            <form id="adminLoginForm" class="admin-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required placeholder="Admin username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="Password">
+                </div>
+                
+                <div id="errorMessage" class="error-message"></div>
+                
+                <button type="submit" class="btn btn-admin btn-full">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
