@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chat-backend"
+version = "1.0.0"
+description = "Chat System Backend"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "gunicorn>=23.0.0",
+    "sqlalchemy>=2.0.35",
+    "python-jose[cryptography]>=3.3.0",
+    "passlib>=1.7.4",
+    "bcrypt==4.2.0",
+    "python-multipart>=0.0.12",
+    "pydantic>=2.9.2",
+    "websockets>=13.1",
+    "email-validator>=2.2.0",
+]
