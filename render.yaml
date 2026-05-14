@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: chat-backend
+    runtime: python
+    plan: free
+    pythonVersion: "3.11.0"
+    buildCommand: cd backend && pip install -r requirements.txt
+    startCommand: cd backend && gunicorn -w 1 -k uvicorn.workers.UvicornWorker main:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+
+  - type: web
+    name: chat-frontend
+    runtime: static
+    plan: free
+    buildCommand: echo "Frontend build complete"
+    staticPublishPath: ./frontend
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+    name: chat-admin
+    runtime: static
+    plan: free
+    buildCommand: echo "Admin build complete"
+    staticPublishPath: ./admin
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /login.html
