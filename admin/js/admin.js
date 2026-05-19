@@ -370,7 +370,7 @@ async function loadStats() {
         
         document.getElementById('totalUsers').textContent = users.length;
         document.getElementById('activeUsers').textContent = users.filter(u => u.is_active).length;
-        document.getElementById('onlineNow').textContent = onlineData.online_users.length;
+        document.getElementById('onlineNow').textContent = (onlineData && onlineData.users ? onlineData.users.length : 0);
         
         // For messages, we'd need a count endpoint. Setting placeholder:
         document.getElementById('totalMessages').textContent = '-';

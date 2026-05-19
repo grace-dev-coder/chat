@@ -144,7 +144,7 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = 
     # Generate JWT token
     access_token_expires = timedelta(minutes=auth.ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = auth.create_access_token(
-        data={"sub": user.username}, expires_delta=access_token_expires
+        data={"sub": user.username, "user_id": user.id}, expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
@@ -155,6 +155,16 @@ async def get_current_user_info(
 ):
     """
     Get current authenticated user's information
+    """
+    return current_user
+
+@app.get("/api/users/me", response_model=UserResponse)
+async def get_current_user_info_alias(
+    current_user: models.User = Depends(auth.get_current_user),
+    db: Session = Depends(get_db)
+):
+    """
+    Get current authenticated user info (alias)
     """
     return current_user
 
@@ -174,38 +184,18 @@ async def get_users(
     return users
 
 @app.get("/api/users/online")
-async def get_online_users():
+async def get_online_users(db: Session = Depends(get_db)):
     """
-    Get list of currently online users (connected via WebSocket)
+    Get list of currently online users with their details
     """
-    online = websocket_manager.get_online_users()
-    return {"online_users": online}
+    online_ids = websocket_manager.get_online_users()
+    users = []
+    for uid in online_ids:
+        user = db.query(models.User).filter(models.User.id == uid).first()
+        if user:
+            users.append({"id": user.id, "username": user.username, "email": user.email})
+    return {"users": users}
 
-# ==================== MESSAGE ENDPOINTS ====================
-
-@app.post("/api/messages", response_model=MessageResponse)
-async def send_message(
-    message: MessageCreate,
-    current_user: models.User = Depends(auth.get_current_user),
-    db: Session = Depends(get_db)
-):
-    """
-    Send a message to another user (HTTP fallback)
-    Real-time messages should use WebSocket
-    """
-    # Verify receiver exists
-    receiver = db.query(models.User).filter(models.User.id == message.receiver_id).first()
-    if not receiver:
-        raise HTTPException(status_code=404, detail="Receiver not found")
-    
-    # Create message
-    db_message = models.Message(
-        sender_id=current_user.id,
-        receiver_id=message.receiver_id,
-        content=message.content
-    )
-    db.add(db_message)
-    db.commit()
     db.refresh(db_message)
     
     # Notify receiver via WebSocket if online
@@ -362,6 +352,19 @@ async def admin_get_all_users(
     users = db.query(models.User).all()
     return users
 
+@app.get("/api/users/online")
+async def get_online_users(db: Session = Depends(get_db)):
+    """
+    Get list of currently online users with their details
+    """
+    online_ids = websocket_manager.get_online_users()
+    users = []
+    for uid in online_ids:
+        user = db.query(models.User).filter(models.User.id == uid).first()
+        if user:
+            users.append({"id": user.id, "username": user.username, "email": user.email})
+    return {"users": users}
+
 @app.delete("/api/admin/users/{user_id}")
 async def admin_delete_user(
     user_id: int,
@@ -464,4 +467,4 @@ async def get_rooms(
     rooms = db.query(models.ChatRoom).all()
     return rooms
 
-# Run with: uvicorn main:app --reload --host 0.0.0.0 --port 8000
+# Run with: uvicorn main:app --reload --host 0.0.0.0 --port 8000"""
